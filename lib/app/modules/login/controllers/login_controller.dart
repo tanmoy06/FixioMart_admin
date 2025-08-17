@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
   final client = Supabase.instance.client;
@@ -28,6 +29,7 @@ class LoginController extends GetxController {
 
   Future<void> logout() async {
     await client.auth.signOut();
+    Get.offAllNamed(Routes.LOGIN); // Redirect to login page
   }
 
   String? currentUid() => client.auth.currentUser?.id;
